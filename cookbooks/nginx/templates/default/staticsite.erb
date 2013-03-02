@@ -1,0 +1,23 @@
+server {
+
+  # address a bug in Virtualbox and shared folders
+  # http://serverfault.com/questions/269420/
+  sendfile off;
+
+  listen  90;
+
+  charset utf-8;
+  server_name localhost;
+  root /vagrant;
+
+  access_log /var/log/nginx/access.log;
+  error_log /var/log/nginx/error.log;
+
+  # send all non extensioned requests to /index.html
+  rewrite ^([^.]*)$ /index.html;
+  location / {
+    root /vagrant/;
+    index  index.html;
+  }
+
+}
