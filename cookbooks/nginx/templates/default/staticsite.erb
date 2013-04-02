@@ -14,10 +14,10 @@ server {
   error_log /var/log/nginx/error.log;
 
   # send all non extensioned requests to /index.html
-  rewrite ^([^.]*)$ /index.html;
   location / {
+    rewrite ^([^.^?]*)(\?.*)?$ /index.html$2;
     root /vagrant/;
     index  index.html;
-  }
+   }
 
 }
